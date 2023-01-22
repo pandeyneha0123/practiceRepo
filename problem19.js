@@ -1,18 +1,25 @@
 //  Decrypt String from Alphabet to Integer Mapping
 
-function freqAlphabets(s: string): string {
-    let ans = ""
-    for(let i = s.length - 1; i>=0; i--){
-        let code = s.charAt(i)
-        if(code === "#"){
-            code = s.charAt(i - 2) + s.charAt(i - 1) 
-            i-=2
+var freqAlphabets = function(s) {
+    s = s.split('#');
+    let output = '';
+    
+    for (let i = 0; i < s.length - 1; i++) {
+        const character = s[i];
+        const double = character.substring(character.length - 2, character.length);
+        
+        for (let j = 0; j < character.length - 2; j++) {
+            output +=  String.fromCharCode(+character[j] + 96);
         }
-        const num = parseInt(code);
-        const val = String.fromCharCode(num + 96)
-        ans = val + ans;
-
+        output +=  String.fromCharCode(+double + 96)
     }
-    return ans
+    
+    const character = s[s.length - 1];
+    if (character) {
+        for (let i = 0; i < character.length; i++) {
+            output +=  String.fromCharCode(+character[i] + 96);
+        }
+    }
 
+    return output;
 };
