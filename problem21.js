@@ -29,4 +29,4 @@ var middleNode = function(head) {
         slow = slow.next;
     }
     return slow;
-};
+}
